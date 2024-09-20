@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"cmath": "cpp",
+		"limits": "cpp",
+		"type_traits": "cpp",
+		"mutex_utils.h": "c",
+		"philo.h": "c",
+		"parsing.h": "c"
+	}
+}
