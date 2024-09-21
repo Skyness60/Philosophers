@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   actions.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sperron <sperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 12:24:41 by sperron           #+#    #+#             */
-/*   Updated: 2024/09/21 13:01:36 by sperron          ###   ########.fr       */
+/*   Created: 2024/09/21 13:15:21 by sperron           #+#    #+#             */
+/*   Updated: 2024/09/21 14:13:31 by sperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#ifndef ACTIONS_H
+# define ACTIONS_H
 
-int	main(int ac, char **av)
-{
-	t_global	global;
+# include <sys/time.h>
+# include "../../includes/philo.h"
 
-	if (parse_arguments(ac, av, &global))
-		return (1);
-	return (0);
-}
+typedef unsigned int		t_useconds;
+
+uint64_t	get_time(void);
+void		*routine(void *philo_pointer);
+bool		philo_one(t_global *global);
+int			ft_usleep(t_useconds time);
+
+#endif // !ACTIONS_H

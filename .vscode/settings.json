@@ -5,6 +5,7 @@
 		"type_traits": "cpp",
 		"mutex_utils.h": "c",
 		"philo.h": "c",
-		"parsing.h": "c"
+		"parsing.h": "c",
+		"actions.h": "c"
 	}
 }

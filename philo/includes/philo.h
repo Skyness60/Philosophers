@@ -6,7 +6,7 @@
 /*   By: sperron <sperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 11:34:16 by sperron           #+#    #+#             */
-/*   Updated: 2024/09/20 16:10:07 by sperron          ###   ########.fr       */
+/*   Updated: 2024/09/21 14:11:27 by sperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,17 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <sys/time.h>
+# include <sys/types.h>
 # include <stdint.h>
 # include "../srcs/utils/mutex/mutex_utils.h"
 # include "../srcs/utils/notlibft/notlibft.h"
 # include "../srcs/parsing/parsing.h"
+# include "../srcs/actions/actions.h"
 
 # define ERR_NUM_ARGS " :\n- number_of_philosophers\n- time_to_die\n- \
 time_to_eat\n- time_to_sleep\n- [number_of_times_each_philosopher_must_eat] \n"
 # define ERR_INPUT_CHAR "\033[31mINVALID INPUT CHARACTER\033[0m"
+# define ERR_INPUT_VALUE "\033[31mINVALID INPUT VALUES\033[0m"
 
 struct	s_global;
 
@@ -50,6 +53,7 @@ typedef struct s_philo
 	t_state			state;
 	t_mutex			*left_fork;
 	t_mutex			*right_fork;
+	t_mutex			lock;
 	pthread_t		thread;
 	uint64_t		time_to_die;
 	uint64_t		time_to_eat;
@@ -74,8 +78,11 @@ typedef struct s_global
 	t_philo		*philo;
 	t_fork		*forks;
 	t_mutex		log_mutex;
+	t_mutex		lock;
+	t_mutex		write;
 	int			num_philo;
 	int			eat_count;
+	int			finish;
 	uint64_t	time_to_die;
 	uint64_t	time_to_eat;
 	uint64_t	time_to_sleep;
@@ -85,6 +92,6 @@ typedef struct s_global
 	int			i_died;
 }				t_global;
 
-bool	parse_arguments(int ac, char **av, t_global global);
+bool	parse_arguments(int ac, char **av, t_global *global);
 
 #endif
