@@ -6,7 +6,7 @@
 /*   By: sperron <sperron@student>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 00:47:27 by sperron           #+#    #+#             */
-/*   Updated: 2024/10/27 01:06:55 by sperron          ###   ########.fr       */
+/*   Updated: 2024/10/27 12:09:46 by sperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	init_philos(t_data *data)
 	philo = data->philos;
 	while (++i < data->nb_philo)
 	{
-		philo[i].id = i++;
+		philo[i].id = i + 1;
 		philo[i].last_meal_time = 0;
 		philo[i].eaten_nb = 0;
 		philo[i].full = false;
@@ -55,7 +55,7 @@ static int	init_philos(t_data *data)
 
 static int	init_fork(t_fork *fork, int id)
 {
-	if (handle_mutex(&(fork->mutex), INIT) == -1);
+	if (handle_mutex(&(fork->mutex), INIT) == -1)
 		return (-1);
 	fork->id = id;
 	return (0);
@@ -66,9 +66,9 @@ int	init(t_data *data)
 	int	i;
 
 	i = -1;
+	init_garbage_collector(data->trash);
 	data->finish = 0;
 	data->ready_nb = 0;
-	init_garbage_collector(data->trash);
 	handle_mutex(&(data->dinner_mtx), INIT);
 	handle_mutex(&(data->write_mtx), INIT);
 	data->forks = malloc(sizeof(t_fork) * data->nb_philo);
