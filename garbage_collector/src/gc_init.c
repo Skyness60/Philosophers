@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   notlibft.h                                         :+:      :+:    :+:   */
+/*   gc_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperron <sperron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sperron <sperron@student>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 13:00:39 by sperron           #+#    #+#             */
-/*   Updated: 2024/09/20 13:09:20 by sperron          ###   ########.fr       */
+/*   Created: 2024/10/26 17:27:20 by sperron           #+#    #+#             */
+/*   Updated: 2024/10/26 19:03:58 by sperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NOTLIBFT_H
-# define NOTLIBFT_H
+#include "../include/garbage_collector.h"
 
-# include <limits.h>
-
-int		ft_isspace(char c);
-long	ft_atoi(const char *str);
-#endif
+void	init_garbage_collector(t_garb_c *trash)
+{
+	trash->capacite = 2;
+	trash->count = 0;
+	trash->ptr_arr = malloc(trash->capacite * sizeof(void *));
+	if (!trash->ptr_arr)
+		exit(1);
+}

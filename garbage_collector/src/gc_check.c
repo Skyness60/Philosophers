@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   gc_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperron <sperron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sperron <sperron@student>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 12:24:41 by sperron           #+#    #+#             */
-/*   Updated: 2024/09/21 13:01:36 by sperron          ###   ########.fr       */
+/*   Created: 2024/10/26 17:40:39 by sperron           #+#    #+#             */
+/*   Updated: 2024/10/26 18:04:56 by sperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../include/garbage_collector.h"
 
-int	main(int ac, char **av)
+bool	is_ptr_in_trash(t_garb_c *trash, void *ptr)
 {
-	t_global	global;
+	size_t	i;
 
-	if (parse_arguments(ac, av, &global))
-		return (1);
-	return (0);
+	i = 0;
+	while (i < trash->count)
+	{
+		if (trash->ptr_arr[i] == ptr)
+			return (true);
+		i++;
+	}
+	return (false);
 }
