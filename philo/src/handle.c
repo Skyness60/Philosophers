@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperron <sperron@student>                  +#+  +:+       +#+        */
+/*   By: sperron <sperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 01:14:42 by sperron           #+#    #+#             */
-/*   Updated: 2024/10/27 13:25:26 by sperron          ###   ########.fr       */
+/*   Updated: 2024/10/31 15:41:23 by sperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ t_thread_action action)
 			return (printf("An error occured creating a thread\n"), -1);
 	}
 	else if (action == JOIN)
+	{
 		if (pthread_join(*thread, NULL) != 0)
-			return (printf("An error occured joining a thread\n"), -1);
+			return (printf("An error occured joining a thread\n"), -1);		
+	}
 	else if (action == DETACH)
 	{
 		if (pthread_detach(*thread) != 0)
